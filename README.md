@@ -46,7 +46,7 @@ The [Releases](https://github.com/unpins/svt-av1/releases) page has standalone b
 
 ## Build notes
 
-- **Windows variant:** `mingw` (cross from Linux). No POSIX gaps — the encoder is plain C with its own thread abstraction.
-- **`-DSVT_AV1_LTO=OFF`**: nixpkgs defaults to `-DSVT_AV1_LTO=ON`, which leaves the static archive carrying only LTO IR (`__gnu_lto_slim`). Non-LTO consumers (ffmpeg's `pkg-config` link probe via `ld.bfd` without the LTO plugin) can't resolve any symbol and fail with `undefined reference to svt_av1_enc_init_handle`. The override lives in [`nix-lib/native-overlay/svt-av1.nix`](https://github.com/unpins/nix-lib/blob/main/native-overlay/svt-av1.nix) so it applies uniformly across all platforms.
-- **No embedded resources.** All encoder data is compiled in; nothing is loaded from disk at runtime.
-- **No upstream features disabled.** Same encode capabilities on every platform.
+- **Windows:** `mingw` cross, single `.exe`, no companion DLLs.
+- **No upstream features disabled** on any platform.
+
+Platform fixes live in [`nix-lib/native-overlay/svt-av1.nix`](https://github.com/unpins/nix-lib/blob/main/native-overlay/svt-av1.nix).
