@@ -14,13 +14,27 @@
   # the static archive as LTO-IR only — non-LTO consumers like ffmpeg's
   # pkg-config probe can't resolve the symbols). See
   # nix-lib/native-overlay/svt-av1.nix.
+  #
+  # Rename `SvtAv1EncApp` → `svt-av1` (with `SvtAv1EncApp` kept as a
+  # symlink for upstream-name compatibility). unpins ships
+  # `$out/bin/<pkg>` as the canonical entry point — both for `unpin
+  # install` UX and for the CI verifier (`result/bin/${PKG}`).
   outputs = { self, unpins-lib }:
-    let ulib = unpins-lib.lib; in
+    let
+      ulib = unpins-lib.lib;
+      rename = drv: drv.overrideAttrs (oa: {
+        postInstall = (oa.postInstall or "") + ''
+          exe=$(find "$out/bin" -maxdepth 1 -name 'SvtAv1EncApp*' -print -quit)
+          ext=''${exe##*SvtAv1EncApp}
+          mv "$exe" "$out/bin/svt-av1$ext"
+          ln -s "svt-av1$ext" "$out/bin/SvtAv1EncApp$ext"
+        '';
+      });
+    in
     ulib.mkStandaloneFlake {
       inherit self;
       name = "svt-av1";
-      binName = "SvtAv1EncApp";
-      build         = pkgs: ulib.nativeFixes.svt-av1 pkgs.pkgsStatic;
-      windowsBuild  = pkgs: ulib.nativeFixes.svt-av1 (ulib.mingwStaticCross pkgs);
+      build         = pkgs: rename (ulib.nativeFixes.svt-av1 pkgs.pkgsStatic);
+      windowsBuild  = pkgs: rename (ulib.nativeFixes.svt-av1 (ulib.mingwStaticCross pkgs));
     };
 }
