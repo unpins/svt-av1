@@ -48,5 +48,6 @@ The [Releases](https://github.com/unpins/svt-av1/releases) page has standalone b
 
 - **Windows:** `mingw` cross, single `.exe`, no companion DLLs.
 - **No upstream features disabled** on any platform.
+- **No man pages** — SVT-AV1 ships none; run with `--help`.
 
 Platform fixes live in [`nix-lib/native-overlay/svt-av1.nix`](https://github.com/unpins/nix-lib/blob/main/native-overlay/svt-av1.nix).
