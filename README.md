@@ -11,18 +11,18 @@ Part of the [unpins](https://unpins.org) project — native single-binary builds
 
 The shipped binary is named `SvtAv1EncApp` (upstream convention). It accepts Y4M or raw YUV input and writes an AV1 bitstream (`.ivf`).
 
-## Installation
+## Usage
 
-Install with [unpin](https://github.com/unpins/unpin):
+Run the `svt-av1` program with [unpin](https://github.com/unpins/unpin):
 
 ```bash
-unpin svt-av1
+unpin svt-av1 -i input.y4m -b output.ivf
 ```
 
-Or run without installing:
+To install it onto your PATH:
 
 ```bash
-unpin run svt-av1
+unpin install svt-av1
 ```
 
 ## Build locally
