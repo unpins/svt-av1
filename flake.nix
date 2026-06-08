@@ -34,6 +34,9 @@
     ulib.mkStandaloneFlake {
       inherit self;
       name = "svt-av1";
+      # SVT-AV1's LICENSE.md is the Clear BSD License; the AOMedia patent grant
+      # nixpkgs also lists is a separate patent license, not the copyright one.
+      license = "BSD-3-Clause-Clear";
       build         = pkgs: rename (ulib.nativeFixes.svt-av1 pkgs.pkgsStatic);
       windowsBuild  = pkgs: rename (ulib.nativeFixes.svt-av1 (ulib.mingwStaticCross pkgs));
     };
