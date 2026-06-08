@@ -1,13 +1,13 @@
 # svt-av1
 
-Standalone build of the [SVT-AV1](https://gitlab.com/AOMediaCodec/SVT-AV1) encoder — the Alliance for Open Media reference AV1 encoder.
+The [SVT-AV1](https://gitlab.com/AOMediaCodec/SVT-AV1) encoder — the Alliance for Open Media reference AV1 encoder. A single self-contained binary, built natively for Linux, macOS, and Windows.
 
 [![CI](https://github.com/unpins/svt-av1/actions/workflows/svt-av1.yml/badge.svg)](https://github.com/unpins/svt-av1/actions)
 ![Linux](https://img.shields.io/badge/Linux-✓-success?logo=linux&logoColor=white)
 ![macOS](https://img.shields.io/badge/macOS-✓-success?logo=apple&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-✓-success?logo=windows&logoColor=white)
 
-Part of the [unpins](https://unpins.org) project — native single-binary builds with no third-party runtime dependencies.
+Part of the [unpins](https://unpins.org) catalog; install it with [`unpin`](https://github.com/unpins/unpin): `unpin install svt-av1`.
 
 The shipped binary is named `SvtAv1EncApp` (upstream convention). It accepts Y4M or raw YUV input and writes an AV1 bitstream (`.ivf`).
 
