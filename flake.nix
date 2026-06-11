@@ -1,5 +1,5 @@
 {
-  description = "Standalone build of SVT-AV1 encoder (SvtAv1EncApp)";
+  description = "SVT-AV1 encoder (SvtAv1EncApp) as a single self-contained binary";
 
   nixConfig = {
     extra-substituters = [ "https://unpins.cachix.org" ];
