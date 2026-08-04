@@ -34,6 +34,12 @@
     ulib.mkStandaloneFlake {
       inherit self;
       name = "svt-av1";
+
+      # Build via the unpin-llvm engine + emit a bitcode multicall module.
+      engine = "unpin-llvm";
+      multicall = {
+        programs = [{ name = "SvtAv1EncApp"; }];
+      };
       # SVT-AV1's LICENSE.md is the Clear BSD License; the AOMedia patent grant
       # nixpkgs also lists is a separate patent license, not the copyright one.
       license = "BSD-3-Clause-Clear";
