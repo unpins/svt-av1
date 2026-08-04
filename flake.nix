@@ -40,6 +40,11 @@
       multicall = {
         programs = [{ name = "SvtAv1EncApp"; }];
       };
+      # `SvtAv1EncApp --version` prints `SVT-AV1 vX.Y.Z (release)` and exits 0 on
+      # every ABI including the Windows runner. Without this the CI smoke job is
+      # skipped outright and nothing ever runs the binary.
+      smoke = [ "--version" ];
+      smokePattern = "SVT-AV1 v[0-9]+[.][0-9]+";
       # SVT-AV1's LICENSE.md is the Clear BSD License; the AOMedia patent grant
       # nixpkgs also lists is a separate patent license, not the copyright one.
       license = "BSD-3-Clause-Clear";
