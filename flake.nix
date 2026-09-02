@@ -38,7 +38,11 @@
       # Build via the unpin-llvm engine + emit a bitcode multicall module.
       engine = "unpin-llvm";
       multicall = {
-        programs = [{ name = "SvtAv1EncApp"; }];
+        programs = [{
+          # SVT-AV1 installs no man page.
+          name = "SvtAv1EncApp";
+          noMan = true;
+        }];
       };
       # `SvtAv1EncApp --version` prints `SVT-AV1 vX.Y.Z (release)` and exits 0 on
       # every ABI including the Windows runner. Without this the CI smoke job is
