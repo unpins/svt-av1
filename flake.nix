@@ -38,6 +38,8 @@
       # Build via the unpin-llvm engine + emit a bitcode multicall module.
       engine = "unpin-llvm";
       multicall = {
+        # The `.exe` on the engine too, not the nixpkgs mingw-gcc cross.
+        windows = true;
         programs = [{
           # SVT-AV1 installs no man page.
           name = "SvtAv1EncApp";
